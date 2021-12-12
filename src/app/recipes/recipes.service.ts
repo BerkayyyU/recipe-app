@@ -1,4 +1,4 @@
-import { Injectable, EventEmitter } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Ingredient } from '../shared/ingredient.model';
 import { ShoppingListService } from '../shopping-list/shopping-list.service';
 import { Recipe } from './recipe.model';
@@ -7,8 +7,6 @@ import { Recipe } from './recipe.model';
   providedIn: 'root',
 })
 export class RecipesService {
-  recipeSelected = new EventEmitter<Recipe>();
-
   private recipes: Recipe[] = [
     new Recipe(
       'Big Fat Burger',
@@ -35,6 +33,10 @@ export class RecipesService {
   getRecipes() {
     // to return new array which is an exact copy of the one in this file
     return this.recipes.slice();
+  }
+
+  getRecipe(index: number) {
+    return this.recipes[index];
   }
 
   addIngredientsToShoppingList(ingredients: Ingredient[]) {
